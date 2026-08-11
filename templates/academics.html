@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Academics & Curriculum | Gurukul Bidhya Sadan Secondary School{% endblock %}
+
+{% block content %}
+<!-- Page Banner -->
+<div class="page-banner">
+    <div class="container banner-content">
+        <h1 class="banner-title">Academics & Curriculum</h1>
+        <ul class="breadcrumb">
+            <li><a href="{% url 'website:home' %}">Home</a></li>
+            <li class="breadcrumb-separator">/</li>
+            <li style="color: white;">Academics</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Academic Programs -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Academic Programs Offered</h2>
+        <p class="section-subtitle">Structured academic levels designed for holistic cognitive and intellectual growth.</p>
+
+        {% if programs %}
+            <div class="grid-3">
+                {% for prog in programs %}
+                    <div class="card" style="border-top: 4px solid var(--primary);">
+                        <div class="card-body">
+                            <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Academic Level</span>
+                            <h3 class="card-title">{{ prog.name }}</h3>
+                            <p class="card-text">{{ prog.description }}</p>
+                            <div style="background-color: var(--bg-alt); padding: 0.75rem; border-radius: var(--radius-sm); font-size: 0.85rem; margin-top: auto;">
+                                <strong>Offered Subjects:</strong><br>{{ prog.curriculum }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- Placeholder Program Cards -->
+            <div class="grid-3">
+                <div class="card" style="border-top: 4px solid var(--primary);">
+                    <div class="card-body">
+                        <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Primary Level</span>
+                        <h3 class="card-title">Primary Education (Class 1 - 5)</h3>
+                        <p class="card-text">[Primary level program focusing on foundational literacy, numeracy, social skills, and basic sciences in a supportive environment.]</p>
+                        <div style="background-color: var(--bg-alt); padding: 0.75rem; border-radius: var(--radius-sm); font-size: 0.85rem; margin-top: auto;">
+                            <strong>Subjects:</strong> English, Mathematics, Science, Social Studies, Vernacular Language, Computer Basics, Art & Craft.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="border-top: 4px solid var(--secondary);">
+                    <div class="card-body">
+                        <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Lower Secondary</span>
+                        <h3 class="card-title">Basic Education (Class 6 - 8)</h3>
+                        <p class="card-text">[Lower secondary curriculum developing conceptual understanding, scientific inquiry, analytical skills, and physical health.]</p>
+                        <div style="background-color: var(--bg-alt); padding: 0.75rem; border-radius: var(--radius-sm); font-size: 0.85rem; margin-top: auto;">
+                            <strong>Subjects:</strong> English, Mathematics, General Science, Social Sciences, Computer Studies, Environmental Science, Health & Physical Education.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="border-top: 4px solid var(--primary-dark);">
+                    <div class="card-body">
+                        <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Secondary Level</span>
+                        <h3 class="card-title">Secondary Education (Class 9 - 10)</h3>
+                        <p class="card-text">[Comprehensive secondary program preparing students for Board examinations and higher academic specialization.]</p>
+                        <div style="background-color: var(--bg-alt); padding: 0.75rem; border-radius: var(--radius-sm); font-size: 0.85rem; margin-top: auto;">
+                            <strong>Subjects:</strong> Advanced Mathematics, Physics, Chemistry, Biology, Social Studies, English Literature, Computer Applications.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Curriculum & Examination Information -->
+<section class="section section-alt">
+    <div class="container grid-2">
+        <div>
+            <span class="badge badge-primary" style="margin-bottom: 0.5rem;">Evaluation & Assessment</span>
+            <h2>Examination System & Guidelines</h2>
+            <p style="margin-bottom: 1rem;">
+                [Examination Policy Placeholder - Continuous and Comprehensive Evaluation (CCE) pattern combined with terminal examinations to assess student progress.]
+            </p>
+            <ul style="list-style: none; margin-bottom: 1.5rem;">
+                <li style="margin-bottom: 0.75rem; display: flex; gap: 0.5rem; align-items: flex-start;">
+                    <span style="color: var(--secondary-hover); font-weight: bold;">✔</span>
+                    <span><strong>Terminal Examinations:</strong> First Term, Mid-Term, and Final Board Evaluation.</span>
+                </li>
+                <li style="margin-bottom: 0.75rem; display: flex; gap: 0.5rem; align-items: flex-start;">
+                    <span style="color: var(--secondary-hover); font-weight: bold;">✔</span>
+                    <span><strong>Internal Assessments:</strong> Classroom assignments, lab practicals, unit tests, and project work.</span>
+                </li>
+                <li style="margin-bottom: 0.75rem; display: flex; gap: 0.5rem; align-items: flex-start;">
+                    <span style="color: var(--secondary-hover); font-weight: bold;">✔</span>
+                    <span><strong>Progress Reports:</strong> Mandatory Parent-Teacher Meetings following each term.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            {% include 'includes/image_placeholder.html' with label="EXAMINATION HALL PHOTO" ratio="ratio-hero" hint="Photograph of School Examination & Assessment Facilities" %}
+        </div>
+    </div>
+</section>
+
+<!-- Academic Calendar Section -->
+<section class="section" id="calendar">
+    <div class="container">
+        <h2 class="section-title">Academic Calendar</h2>
+        <p class="section-subtitle">Key dates, examination schedules, term vacations, and academic events.</p>
+
+        {% if calendar_events %}
+            <div style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
+                {% for event in calendar_events %}
+                    <div class="card" style="padding: 1.25rem 1.5rem; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; border-left: 4px solid var(--primary);">
+                        <div>
+                            <span class="badge badge-gold" style="margin-bottom: 0.25rem;">{{ event.get_category_display }}</span>
+                            <h3 style="font-size: 1.15rem; margin: 0.25rem 0; color: var(--primary-dark);">{{ event.title }}</h3>
+                            {% if event.description %}
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">{{ event.description }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div style="text-align: right; background-color: var(--bg-alt); padding: 0.6rem 1rem; border-radius: var(--radius-sm); font-weight: 600; color: var(--primary-dark);">
+                            🗓️ {{ event.date|date:"N j, Y" }}
+                            {% if event.end_date %}
+                                <br><span style="font-size: 0.8rem; color: var(--text-muted);">To {{ event.end_date|date:"N j, Y" }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- Placeholder Calendar Table -->
+            <div class="card" style="max-width: 900px; margin: 0 auto; padding: 2rem;">
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">
+                    [ACADEMIC CALENDAR PLACEHOLDER - Academic dates, holidays, and exam schedules are dynamically populated from the Django database.]
+                </p>
+
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                        <thead>
+                            <tr style="background-color: var(--primary); color: white;">
+                                <th style="padding: 0.75rem 1rem;">Event / Activity Title</th>
+                                <th style="padding: 0.75rem 1rem;">Category</th>
+                                <th style="padding: 0.75rem 1rem;">Scheduled Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-light);">
+                                <td style="padding: 0.75rem 1rem;">[Academic Term Reopening]</td>
+                                <td style="padding: 0.75rem 1rem;"><span class="badge badge-primary">Term Event</span></td>
+                                <td style="padding: 0.75rem 1rem;">[Date Placeholder]</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-light); background-color: var(--bg-alt);">
+                                <td style="padding: 0.75rem 1rem;">[First Unit Test Examinations]</td>
+                                <td style="padding: 0.75rem 1rem;"><span class="badge badge-gold">Examination</span></td>
+                                <td style="padding: 0.75rem 1rem;">[Date Placeholder]</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-light);">
+                                <td style="padding: 0.75rem 1rem;">[Parent-Teacher Consultation Meeting]</td>
+                                <td style="padding: 0.75rem 1rem;"><span class="badge badge-secondary">Meeting</span></td>
+                                <td style="padding: 0.75rem 1rem;">[Date Placeholder]</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-light); background-color: var(--bg-alt);">
+                                <td style="padding: 0.75rem 1rem;">[Mid-Term School Vacation]</td>
+                                <td style="padding: 0.75rem 1rem;"><span class="badge badge-accent">Holiday</span></td>
+                                <td style="padding: 0.75rem 1rem;">[Date Placeholder]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
