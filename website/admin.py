@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import (
+    SchoolInformation,
     Notice,
     Event,
     AcademicCalendarEvent,
@@ -15,6 +16,39 @@ from .models import (
 admin.site.site_header = "Gurukul Bidhya Sadan Secondary School - Admin Portal"
 admin.site.site_title = "Gurukul Admin"
 admin.site.index_title = "School Content Management System"
+
+
+# ------------------------------------------------------------------
+# SCHOOL INFORMATION CMS ADMIN
+# ------------------------------------------------------------------
+@admin.register(SchoolInformation)
+class SchoolInformationAdmin(admin.ModelAdmin):
+    list_display = ('school_name', 'phone', 'email', 'principal_name')
+
+    fieldsets = (
+        ('General Branding & Tagline', {
+            'fields': ('school_name', 'tagline', 'affiliation_info', 'main_campus_photo')
+        }),
+        ('Institutional Information', {
+            'fields': ('history', 'vision', 'mission', 'objectives')
+        }),
+        ('Desk of the Principal', {
+            'fields': ('principal_name', 'principal_title', 'principal_photo', 'principal_message')
+        }),
+        ('Contact Details & Office Hours', {
+            'fields': ('address', 'phone', 'admission_phone', 'email', 'principal_email', 'office_hours', 'google_maps_url')
+        }),
+    )
+
+    def has_add_permission(self, request):
+        # Allow adding only if no record exists yet
+        if self.model.objects.exists():
+            return False
+        return super().has_add_permission(request)
+
+    def has_delete_permission(self, request, obj=None):
+        # Protect singleton record from accidental deletion
+        return False
 
 
 # ------------------------------------------------------------------

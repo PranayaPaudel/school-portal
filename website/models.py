@@ -2,6 +2,54 @@ from django.db import models
 from django.utils import timezone
 
 # ------------------------------------------------------------------
+# 0. SCHOOL GENERAL INFORMATION (SINGLETON CMS MODEL)
+# ------------------------------------------------------------------
+class SchoolInformation(models.Model):
+    school_name = models.CharField(max_length=255, default="Gurukul Bidhya Sadan Secondary School")
+    tagline = models.CharField(max_length=255, default="Nurturing Knowledge, Integrity, and Excellence for Tomorrow's Leaders")
+    history = models.TextField(default="[School History Content Here - Gurukul Bidhya Sadan Secondary School was established with a vision to deliver academic excellence and foster holistic student development.]")
+    vision = models.TextField(default="[School Vision Statement Here - To be a center of educational excellence that nurtures innovative thinkers and ethical leaders.]")
+    mission = models.TextField(default="[School Mission Statement Here - To provide comprehensive quality education through interactive teaching methodologies and practical learning.]")
+    objectives = models.TextField(default="[School Educational Objectives Here - Foster scientific inquiry, enhance creative capabilities, and maintain high academic standards.]")
+    
+    # Principal Details
+    principal_name = models.CharField(max_length=255, default="[Principal's Name]")
+    principal_title = models.CharField(max_length=255, default="Principal, M.A., B.Ed., Ph.D.")
+    principal_message = models.TextField(default="[Principal's Message Here - Dear Students, Parents, and Visitors, welcome to Gurukul Bidhya Sadan Secondary School. Education is not merely acquiring information, but developing character, wisdom, and responsibility.]")
+    principal_photo = models.ImageField(upload_to='school_info/', blank=True, null=True, help_text="Upload official principal photo")
+    
+    # Campus Details
+    main_campus_photo = models.ImageField(upload_to='school_info/', blank=True, null=True, help_text="Main school building hero photograph")
+
+    # Contact & Location Details
+    address = models.TextField(default="[School Address Line 1 Placeholder]\n[City, State, Pin Code Placeholder]")
+    phone = models.CharField(max_length=100, default="[Official Phone Number]")
+    admission_phone = models.CharField(max_length=100, default="[Official Admission Mobile Number]")
+    email = models.EmailField(default="info@gurukul.edu.np")
+    principal_email = models.EmailField(default="principal@gurukul.edu.np")
+    office_hours = models.TextField(default="Monday – Friday: 09:00 AM – 04:00 PM\nSaturday: 09:00 AM – 01:00 PM\nSunday & Holidays: Closed")
+    affiliation_info = models.CharField(max_length=255, default="[Board Affiliation Info Placeholder]")
+    google_maps_url = models.URLField(blank=True, null=True, help_text="Optional Google Maps URL")
+
+    class Meta:
+        verbose_name = "School Official Information & Settings"
+        verbose_name_plural = "School Official Information & Settings"
+
+    def __str__(self):
+        return self.school_name
+
+    def save(self, *args, **kwargs):
+        # Enforce singleton pattern (only 1 record in database)
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def load(cls):
+        obj, created = cls.objects.get_or_create(pk=1)
+        return obj
+
+
+# ------------------------------------------------------------------
 # 1. NOTICES MODEL
 # ------------------------------------------------------------------
 class Notice(models.Model):

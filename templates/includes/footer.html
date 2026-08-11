@@ -3,12 +3,12 @@
     <div class="footer-top">
         <div class="container footer-grid">
             <div class="footer-col">
-                <h3>Gurukul Bidhya Sadan</h3>
+                <h3>{{ school_info.school_name }}</h3>
                 <p style="margin-bottom: 1rem; color: #cbd5e1;">
-                    [School Motto / Vision Statement Placeholder - Empowering young minds through excellence in education, character building, and innovative learning.]
+                    {{ school_info.tagline }}
                 </p>
                 <p style="font-size: 0.9rem; color: #94a3b8;">
-                    <strong>Affiliation:</strong> [Board Affiliation Info Placeholder]
+                    <strong>Affiliation:</strong> {{ school_info.affiliation_info }}
                 </p>
             </div>
 
@@ -37,13 +37,13 @@
             <div class="footer-col">
                 <h3>School Contact Info</h3>
                 <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: #cbd5e1;">
-                    <strong>Address:</strong><br>[School Address Line 1 Placeholder]<br>[City, State, Pin Code Placeholder]
+                    <strong>Address:</strong><br>{{ school_info.address|linebreaksbr }}
                 </p>
                 <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: #cbd5e1;">
-                    <strong>Phone:</strong><br>[Official Phone Number]
+                    <strong>Phone:</strong><br>{{ school_info.phone }}
                 </p>
                 <p style="font-size: 0.9rem; color: #cbd5e1;">
-                    <strong>Email:</strong><br>[Official Email Address]
+                    <strong>Email:</strong><br>{{ school_info.email }}
                 </p>
             </div>
         </div>
@@ -51,7 +51,7 @@
 
     <div class="footer-bottom">
         <div class="container">
-            <p>&copy; {% now "Y" %} Gurukul Bidhya Sadan Secondary School. All Rights Reserved. | VTU Computer Science Engineering Entrepreneurship Project</p>
+            <p>&copy; {% now "Y" %} {{ school_info.school_name }}. All Rights Reserved. | VTU Computer Science Engineering Entrepreneurship Project</p>
         </div>
     </div>
 </footer>

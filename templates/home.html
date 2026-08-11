@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home | Gurukul Bidhya Sadan Secondary School{% endblock %}
+{% block title %}Home | {{ school_info.school_name }}{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -9,9 +9,9 @@
     <div class="container grid-2" style="align-items: center;">
         <div>
             <span class="badge badge-gold" style="margin-bottom: 1rem;">Official Institutional Portal</span>
-            <h1 style="color: white; font-size: 2.75rem; margin-bottom: 1rem;">Gurukul Bidhya Sadan<br><span style="color: var(--secondary); font-size: 2rem;">Secondary School</span></h1>
+            <h1 style="color: white; font-size: 2.75rem; margin-bottom: 1rem;">{{ school_info.school_name }}</h1>
             <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 2rem; font-family: var(--font-serif); font-style: italic;">
-                "[School Tagline Placeholder - Nurturing Knowledge, Integrity, and Excellence for Tomorrow's Leaders]"
+                "{{ school_info.tagline }}"
             </p>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                 <a href="{% url 'website:academics' %}" class="btn btn-secondary">Explore Academics</a>
@@ -21,7 +21,7 @@
         </div>
 
         <div>
-            {% include 'includes/image_placeholder.html' with label="MAIN SCHOOL BUILDING IMAGE" ratio="ratio-hero" hint="Photograph of Gurukul Bidhya Sadan Secondary School Main Campus" %}
+            {% include 'includes/image_placeholder.html' with image=school_info.main_campus_photo label="MAIN SCHOOL BUILDING IMAGE" ratio="ratio-hero" hint="Photograph of Gurukul Bidhya Sadan Secondary School Main Campus" %}
         </div>
     </div>
 </section>
@@ -33,10 +33,7 @@
             <span class="badge badge-primary" style="margin-bottom: 0.5rem;">Welcome to Gurukul</span>
             <h2>School Introduction</h2>
             <p style="margin-bottom: 1.25rem; color: var(--text-body);">
-                [School Introduction Content Here - Gurukul Bidhya Sadan Secondary School is dedicated to academic rigor, character development, and total personality enhancement. The institution provides a stimulating environment designed to inspire student potential.]
-            </p>
-            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
-                [Additional Introduction Detail Placeholder - Equipped with dedicated faculty, structured academic curriculum, and modern co-curricular activities, the school ensures a balanced educational experience.]
+                {{ school_info.history|truncatewords:60 }}
             </p>
             <a href="{% url 'website:about' %}" class="btn btn-primary">Learn More About Us &rarr;</a>
         </div>
@@ -45,16 +42,16 @@
             <div class="card-body">
                 <div style="display: flex; gap: 1.25rem; align-items: flex-start; margin-bottom: 1rem;">
                     <div style="width: 110px; flex-shrink: 0;">
-                        {% include 'includes/image_placeholder.html' with label="PRINCIPAL PHOTO" ratio="ratio-portrait" hint="Principal Image" %}
+                        {% include 'includes/image_placeholder.html' with image=school_info.principal_photo label="PRINCIPAL PHOTO" ratio="ratio-portrait" hint="Principal Image" %}
                     </div>
                     <div>
                         <span class="badge badge-gold" style="margin-bottom: 0.25rem;">Leadership</span>
-                        <h3 style="margin-bottom: 0.25rem; font-size: 1.25rem;">[Principal's Name]</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Principal, Gurukul Bidhya Sadan</p>
+                        <h3 style="margin-bottom: 0.25rem; font-size: 1.25rem;">{{ school_info.principal_name }}</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">{{ school_info.principal_title }}</p>
                     </div>
                 </div>
                 <blockquote style="font-family: var(--font-serif); font-style: italic; color: var(--text-body); background: var(--bg-alt); padding: 1rem; border-left: 3px solid var(--secondary); border-radius: var(--radius-sm); font-size: 0.95rem;">
-                    "[Principal's Message Here - Dear Students, Parents, and Visitors, welcome to Gurukul Bidhya Sadan Secondary School. Education is not merely acquiring information, but developing character, wisdom, and responsibility. We invite you to explore our vibrant academic community.]"
+                    "{{ school_info.principal_message|truncatewords:40 }}"
                 </blockquote>
                 <div style="margin-top: 1rem; text-align: right;">
                     <a href="{% url 'website:about' %}" style="font-weight: 600; font-size: 0.9rem;">Read Full Message &rarr;</a>

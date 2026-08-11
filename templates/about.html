@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}About Us | Gurukul Bidhya Sadan Secondary School{% endblock %}
+{% block title %}About Us | {{ school_info.school_name }}{% endblock %}
 
 {% block content %}
 <!-- Page Banner Header -->
@@ -22,16 +22,13 @@
         <div>
             <span class="badge badge-primary" style="margin-bottom: 0.5rem;">Institutional Heritage</span>
             <h2>School History & Legacy</h2>
-            <p style="margin-bottom: 1.25rem;">
-                [School History Content Here - Gurukul Bidhya Sadan Secondary School was established with a vision to deliver academic excellence and foster holistic student development. Over the years, the institution has grown into a premier seat of learning in the region.]
-            </p>
-            <p style="margin-bottom: 1.25rem; color: var(--text-muted);">
-                [Additional Historical Milestones Placeholder - From humble beginnings to expanding modern laboratories, library facilities, and athletic grounds, our journey reflects commitment to educational progress, discipline, and community growth.]
-            </p>
+            <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-body); margin-bottom: 1.25rem;">
+                {{ school_info.history|linebreaks }}
+            </div>
         </div>
 
         <div>
-            {% include 'includes/image_placeholder.html' with label="HISTORICAL SCHOOL BUILDING IMAGE" ratio="ratio-hero" hint="Photograph of School Campus & Main Block" %}
+            {% include 'includes/image_placeholder.html' with image=school_info.main_campus_photo label="HISTORICAL SCHOOL BUILDING IMAGE" ratio="ratio-hero" hint="Photograph of School Campus & Main Block" %}
         </div>
     </div>
 </section>
@@ -47,7 +44,7 @@
                     <div style="font-size: 2rem; color: var(--primary); margin-bottom: 0.75rem;">👁️</div>
                     <h3 style="font-size: 1.3rem;">Our Vision</h3>
                     <p style="color: var(--text-body); font-size: 0.95rem;">
-                        [School Vision Statement Here - To be a center of educational excellence that nurtures innovative thinkers, ethical leaders, and lifelong learners capable of contributing meaningfully to global society.]
+                        {{ school_info.vision }}
                     </p>
                 </div>
             </div>
@@ -57,7 +54,7 @@
                     <div style="font-size: 2rem; color: var(--secondary-hover); margin-bottom: 0.75rem;">🎯</div>
                     <h3 style="font-size: 1.3rem;">Our Mission</h3>
                     <p style="color: var(--text-body); font-size: 0.95rem;">
-                        [School Mission Statement Here - To provide comprehensive quality education through interactive teaching methodologies, practical learning, sports, and value-based character building in a safe and inclusive environment.]
+                        {{ school_info.mission }}
                     </p>
                 </div>
             </div>
@@ -67,7 +64,7 @@
                     <div style="font-size: 2rem; color: var(--accent); margin-bottom: 0.75rem;">🌟</div>
                     <h3 style="font-size: 1.3rem;">Key Objectives</h3>
                     <p style="color: var(--text-body); font-size: 0.95rem;">
-                        [School Educational Objectives Here - Foster scientific inquiry, enhance creative capabilities, maintain high academic standards, promote athletic discipline, and instill moral integrity in every student.]
+                        {{ school_info.objectives }}
                     </p>
                 </div>
             </div>
@@ -81,26 +78,18 @@
         <div class="card" style="padding: 2.5rem; border-left: 6px solid var(--primary-dark);">
             <div class="grid-2" style="grid-template-columns: 280px 1fr; align-items: start; gap: 2rem;">
                 <div>
-                    {% include 'includes/image_placeholder.html' with label="PRINCIPAL PHOTO" ratio="ratio-portrait" hint="Principal Official Photograph" %}
+                    {% include 'includes/image_placeholder.html' with image=school_info.principal_photo label="PRINCIPAL PHOTO" ratio="ratio-portrait" hint="Principal Official Photograph" %}
                     <div style="text-align: center; margin-top: 1rem;">
-                        <h3 style="font-size: 1.15rem; margin-bottom: 0.25rem;">[Principal's Name]</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Principal, M.A., B.Ed., Ph.D.</p>
+                        <h3 style="font-size: 1.15rem; margin-bottom: 0.25rem;">{{ school_info.principal_name }}</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">{{ school_info.principal_title }}</p>
                         <span class="badge badge-gold" style="margin-top: 0.5rem;">Desk of the Principal</span>
                     </div>
                 </div>
 
                 <div>
                     <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary-dark);">Message from the Principal</h2>
-                    <div style="font-family: var(--font-serif); font-size: 1rem; line-height: 1.7; color: var(--text-body);">
-                        <p style="margin-bottom: 1rem;">
-                            "[Principal's Message Here - Greetings to all parents, students, and well-wishers of Gurukul Bidhya Sadan Secondary School.]"
-                        </p>
-                        <p style="margin-bottom: 1rem;">
-                            "[Expanded Principal Message - Education is a collaborative journey between students, educators, and families. At Gurukul Bidhya Sadan, we strive to create an atmosphere where curiosity is celebrated, talent is nurtured, and ethical values guide action.]"
-                        </p>
-                        <p style="margin-bottom: 1rem;">
-                            "[Future Outlook Message - We welcome you to join our institutional community as we continue our dedicated pursuit of academic and co-curricular excellence.]"
-                        </p>
+                    <div style="font-family: var(--font-serif); font-size: 1rem; line-height: 1.8; color: var(--text-body);">
+                        {{ school_info.principal_message|linebreaks }}
                     </div>
                 </div>
             </div>

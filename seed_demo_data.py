@@ -9,11 +9,15 @@ django.setup()
 from django.contrib.auth.models import User
 from django.utils import timezone
 from website.models import (
-    Notice, Event, AcademicCalendarEvent, Achievement, Alumni,
+    SchoolInformation, Notice, Event, AcademicCalendarEvent, Achievement, Alumni,
     GalleryAlbum, GalleryImage, ContactMessage, AcademicProgram
 )
 
 print("--- Seeding Sample Institutional Data ---")
+
+# 0. Load / Initialize SchoolInformation Singleton Settings
+SchoolInformation.load()
+print("Initialized SchoolInformation singleton settings.")
 
 # 1. Create Admin Superuser if not exists
 if not User.objects.filter(username='admin').exists():
