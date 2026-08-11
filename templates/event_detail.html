@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ event.title }} | Event Details{% endblock %}
+
+{% block content %}
+<!-- Page Banner -->
+<div class="page-banner">
+    <div class="container banner-content">
+        <h1 class="banner-title">Event Information</h1>
+        <ul class="breadcrumb">
+            <li><a href="{% url 'website:home' %}">Home</a></li>
+            <li class="breadcrumb-separator">/</li>
+            <li><a href="{% url 'website:events' %}">Events & Functions</a></li>
+            <li class="breadcrumb-separator">/</li>
+            <li style="color: white;">Event Detail</li>
+        </ul>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container" style="max-width: 950px;">
+        <div class="card">
+            <!-- Event Header Image / Image Placeholder -->
+            {% include 'includes/image_placeholder.html' with image=event.image label=event.title|upper|add:" PHOTO" ratio="ratio-hero" hint="Event Featured Photograph" %}
+
+            <div class="card-body" style="padding: 2.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                    <span class="badge badge-gold" style="font-size: 0.9rem;">{{ event.get_category_display }}</span>
+                    {% if event.is_featured %}
+                        <span class="badge badge-primary">Featured School Event</span>
+                    {% endif %}
+                </div>
+
+                <h1 style="font-size: 2.2rem; color: var(--primary-dark); margin-bottom: 1.25rem;">
+                    {{ event.title }}
+                </h1>
+
+                <!-- Event Quick Info Grid -->
+                <div style="background-color: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; border-left: 4px solid var(--primary);">
+                    <div>
+                        <strong style="color: var(--primary-dark); display: block; font-size: 0.85rem; text-transform: uppercase;">🗓️ Date</strong>
+                        <span style="font-size: 1rem; font-weight: 600;">{{ event.date|date:"F j, Y" }}</span>
+                    </div>
+
+                    {% if event.time %}
+                        <div>
+                            <strong style="color: var(--primary-dark); display: block; font-size: 0.85rem; text-transform: uppercase;">🕒 Time</strong>
+                            <span style="font-size: 1rem; font-weight: 600;">{{ event.time }}</span>
+                        </div>
+                    {% endif %}
+
+                    <div>
+                        <strong style="color: var(--primary-dark); display: block; font-size: 0.85rem; text-transform: uppercase;">📍 Venue / Location</strong>
+                        <span style="font-size: 1rem; font-weight: 600;">{{ event.location|default:"School Campus" }}</span>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem;">About This Event</h3>
+                <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-body); margin-bottom: 2.5rem; white-space: pre-line;">
+                    {{ event.description }}
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 1.5rem;">
+                    <a href="{% url 'website:events' %}" class="btn btn-outline">&larr; Back to Events List</a>
+                    <a href="{% url 'website:contact' %}" class="btn btn-primary">Contact Office for Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Events & School Functions | Gurukul Bidhya Sadan Secondary School{% endblock %}
+
+{% block content %}
+<!-- Page Banner -->
+<div class="page-banner">
+    <div class="container banner-content">
+        <h1 class="banner-title">Events & Institutional Functions</h1>
+        <ul class="breadcrumb">
+            <li><a href="{% url 'website:home' %}">Home</a></li>
+            <li class="breadcrumb-separator">/</li>
+            <li style="color: white;">Events & Functions</li>
+        </ul>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <!-- Filter & Search Bar -->
+        <div class="filter-bar">
+            <form method="get" action="{% url 'website:events' %}" class="filter-form">
+                <div class="form-group">
+                    <label for="q" class="form-label">Search Event</label>
+                    <input type="text" id="q" name="q" value="{{ current_q }}" class="form-control" placeholder="Search events by title or keyword...">
+                </div>
+
+                <div class="form-group">
+                    <label for="category" class="form-label">Filter by Event Category</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">All Categories</option>
+                        {% for cat_key, cat_label in categories %}
+                            <option value="{{ cat_key }}" {% if current_category == cat_key %}selected{% endif %}>{{ cat_label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div style="align-self: flex-end;">
+                    <button type="submit" class="btn btn-primary">Filter Events</button>
+                    {% if current_q or current_category %}
+                        <a href="{% url 'website:events' %}" class="btn btn-outline" style="margin-left: 0.5rem;">Clear</a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+
+        <!-- Events Grid -->
+        {% if events %}
+            <div class="grid-3">
+                {% for event in events %}
+                    <div class="card">
+                        {% include 'includes/image_placeholder.html' with image=event.image label=event.get_category_display|upper|add:" PHOTO" ratio="ratio-card" hint="Official Event Photograph" %}
+                        
+                        <div class="card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <span class="badge badge-gold">{{ event.get_category_display }}</span>
+                                {% if event.is_featured %}
+                                    <span class="badge badge-primary">Featured</span>
+                                {% endif %}
+                            </div>
+
+                            <h3 class="card-title">
+                                <a href="{% url 'website:event_detail' event.id %}">{{ event.title }}</a>
+                            </h3>
+
+                            <div style="font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 0.75rem;">
+                                🗓️ {{ event.date|date:"F j, Y" }} {% if event.time %}| 🕒 {{ event.time }}{% endif %}
+                            </div>
+
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                                📍 <strong>Location:</strong> {{ event.location|default:"School Campus" }}
+                            </p>
+
+                            <p class="card-text">
+                                {{ event.description|truncatewords:20 }}
+                            </p>
+
+                            <a href="{% url 'website:event_detail' event.id %}" class="btn btn-outline btn-sm" style="margin-top: auto; align-self: flex-start;">
+                                View Event Details &rarr;
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- Placeholder grid when no dynamic events match query -->
+            <div style="margin-bottom: 2rem; text-align: center;">
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    {% if current_q or current_category %}
+                        No events match your selected filters. Try clearing your search parameters.
+                    {% else %}
+                        [SAMPLE EVENTS PREVIEW - Showing standard school function categories below. School staff will manage upcoming real events via Django Admin.]
+                    {% endif %}
+                </p>
+            </div>
+
+            {% if not current_q and not current_category %}
+                <div class="grid-3">
+                    <!-- Sample Event Placeholder 1 -->
+                    <div class="card">
+                        {% include 'includes/image_placeholder.html' with label="ANNUAL FUNCTION PHOTO" ratio="ratio-card" hint="Annual Day Celebration & Prize Distribution" %}
+                        <div class="card-body">
+                            <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Annual Function</span>
+                            <h3 class="card-title">[Annual Cultural Day & Award Ceremony]</h3>
+                            <p style="font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">🗓️ [Date Placeholder] | 📍 School Auditorium</p>
+                            <p class="card-text">[Sample description of the annual function featuring student stage performances, drama, choir, and principal's annual report.]</p>
+                        </div>
+                    </div>
+
+                    <!-- Sample Event Placeholder 2 -->
+                    <div class="card">
+                        {% include 'includes/image_placeholder.html' with label="SPORTS DAY PHOTO" ratio="ratio-card" hint="Annual Sports Meet & Track Events" %}
+                        <div class="card-body">
+                            <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Sports Day</span>
+                            <h3 class="card-title">[Annual Sports Meet]</h3>
+                            <p style="font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">🗓️ [Date Placeholder] | 📍 Sports Ground</p>
+                            <p class="card-text">[Sample description of inter-house track and field competitions, march past, relay races, and trophy distribution.]</p>
+                        </div>
+                    </div>
+
+                    <!-- Sample Event Placeholder 3 -->
+                    <div class="card">
+                        {% include 'includes/image_placeholder.html' with label="SCIENCE EXHIBITION PHOTO" ratio="ratio-card" hint="Science & Technology Exhibition" %}
+                        <div class="card-body">
+                            <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Science Exhibition</span>
+                            <h3 class="card-title">[Inter-School Science Fair]</h3>
+                            <p style="font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">🗓️ [Date Placeholder] | 📍 Science Complex</p>
+                            <p class="card-text">[Sample description of student innovation exhibits, working models, robotics projects, and live experiments.]</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
