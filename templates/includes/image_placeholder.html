@@ -1,0 +1,9 @@
+{% if image %}
+    <img src="{{ image.url }}" alt="{{ label|default:'School Image' }}" class="{{ img_class }}">
+{% else %}
+    <div class="img-placeholder {{ ratio|default:'ratio-card' }} {{ extra_class }}">
+        <div class="img-placeholder-icon">📷</div>
+        <div class="img-placeholder-text">[ {{ label|default:'IMAGE PLACEHOLDER' }} ]</div>
+        <div class="img-placeholder-hint">{{ hint|default:'Photograph to be provided by School Administration' }}</div>
+    </div>
+{% endif %}

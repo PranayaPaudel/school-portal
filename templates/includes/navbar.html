@@ -1,0 +1,47 @@
+{% load static %}
+<!-- Top Header Bar -->
+<div class="top-bar">
+    <div class="container top-bar-inner">
+        <div class="top-contact">
+            <span>📍 [School Address Placeholder]</span>
+            <span>📞 [Official Phone Number]</span>
+            <span>✉️ [Official Email Address]</span>
+        </div>
+        <div class="top-links">
+            <a href="{% url 'website:contact' %}">Admissions Open</a>
+            <a href="/admin/" target="_blank">Admin Portal</a>
+        </div>
+    </div>
+</div>
+
+<!-- Main Navigation Header -->
+<header class="main-header">
+    <div class="container nav-container">
+        <a href="{% url 'website:home' %}" class="brand-logo">
+            <div class="logo-badge">G</div>
+            <div class="brand-text">
+                <h1>Gurukul Bidhya Sadan</h1>
+                <span>Secondary School</span>
+            </div>
+        </a>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <ul class="nav-menu">
+            <li><a href="{% url 'website:home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+            <li><a href="{% url 'website:about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+            <li><a href="{% url 'website:academics' %}" class="nav-link {% if request.resolver_match.url_name == 'academics' %}active{% endif %}">Academics</a></li>
+            <li><a href="{% url 'website:events' %}" class="nav-link {% if 'event' in request.resolver_match.url_name %}active{% endif %}">Events & Functions</a></li>
+            <li><a href="{% url 'website:notices' %}" class="nav-link {% if 'notice' in request.resolver_match.url_name %}active{% endif %}">News & Notices</a></li>
+            <li><a href="{% url 'website:gallery' %}" class="nav-link {% if 'gallery' in request.resolver_match.url_name %}active{% endif %}">Gallery</a></li>
+            <li><a href="{% url 'website:achievements' %}" class="nav-link {% if request.resolver_match.url_name == 'achievements' %}active{% endif %}">Achievements</a></li>
+            <li><a href="{% url 'website:alumni' %}" class="nav-link {% if 'alumni' in request.resolver_match.url_name %}active{% endif %}">Alumni</a></li>
+            <li><a href="{% url 'website:contact' %}" class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+        </ul>
+    </div>
+</header>

@@ -1,0 +1,57 @@
+{% load static %}
+<footer class="main-footer">
+    <div class="footer-top">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Gurukul Bidhya Sadan</h3>
+                <p style="margin-bottom: 1rem; color: #cbd5e1;">
+                    [School Motto / Vision Statement Placeholder - Empowering young minds through excellence in education, character building, and innovative learning.]
+                </p>
+                <p style="font-size: 0.9rem; color: #94a3b8;">
+                    <strong>Affiliation:</strong> [Board Affiliation Info Placeholder]
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'website:about' %}">About Us</a></li>
+                    <li><a href="{% url 'website:academics' %}">Academics & Curriculum</a></li>
+                    <li><a href="{% url 'website:notices' %}">Latest Notices</a></li>
+                    <li><a href="{% url 'website:events' %}">Upcoming Events</a></li>
+                    <li><a href="{% url 'website:contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Highlights</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'website:achievements' %}">School Achievements</a></li>
+                    <li><a href="{% url 'website:gallery' %}">Photo Gallery</a></li>
+                    <li><a href="{% url 'website:alumni' %}">Alumni Network</a></li>
+                    <li><a href="{% url 'website:academics' %}#calendar">Academic Calendar</a></li>
+                    <li><a href="/admin/">Admin Portal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>School Contact Info</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: #cbd5e1;">
+                    <strong>Address:</strong><br>[School Address Line 1 Placeholder]<br>[City, State, Pin Code Placeholder]
+                </p>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: #cbd5e1;">
+                    <strong>Phone:</strong><br>[Official Phone Number]
+                </p>
+                <p style="font-size: 0.9rem; color: #cbd5e1;">
+                    <strong>Email:</strong><br>[Official Email Address]
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; {% now "Y" %} Gurukul Bidhya Sadan Secondary School. All Rights Reserved. | VTU Computer Science Engineering Entrepreneurship Project</p>
+        </div>
+    </div>
+</footer>
