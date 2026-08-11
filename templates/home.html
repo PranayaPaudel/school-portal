@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | Gurukul Bidhya Sadan Secondary School{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="background: linear-gradient(rgba(15, 44, 89, 0.85), rgba(8, 26, 56, 0.9)), #0f2c59; color: white; padding: 4.5rem 0; border-bottom: 5px solid var(--secondary);">
+    <div class="container grid-2" style="align-items: center;">
+        <div>
+            <span class="badge badge-gold" style="margin-bottom: 1rem;">Official Institutional Portal</span>
+            <h1 style="color: white; font-size: 2.75rem; margin-bottom: 1rem;">Gurukul Bidhya Sadan<br><span style="color: var(--secondary); font-size: 2rem;">Secondary School</span></h1>
+            <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 2rem; font-family: var(--font-serif); font-style: italic;">
+                "[School Tagline Placeholder - Nurturing Knowledge, Integrity, and Excellence for Tomorrow's Leaders]"
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="{% url 'website:academics' %}" class="btn btn-secondary">Explore Academics</a>
+                <a href="{% url 'website:notices' %}" class="btn btn-outline" style="color: white; border-color: white;">Latest Notices</a>
+                <a href="{% url 'website:contact' %}" class="btn btn-primary">Contact Us</a>
+            </div>
+        </div>
+
+        <div>
+            {% include 'includes/image_placeholder.html' with label="MAIN SCHOOL BUILDING IMAGE" ratio="ratio-hero" hint="Photograph of Gurukul Bidhya Sadan Secondary School Main Campus" %}
+        </div>
+    </div>
+</section>
+
+<!-- Introduction & Principal Preview -->
+<section class="section">
+    <div class="container grid-2">
+        <div>
+            <span class="badge badge-primary" style="margin-bottom: 0.5rem;">Welcome to Gurukul</span>
+            <h2>School Introduction</h2>
+            <p style="margin-bottom: 1.25rem; color: var(--text-body);">
+                [School Introduction Content Here - Gurukul Bidhya Sadan Secondary School is dedicated to academic rigor, character development, and total personality enhancement. The institution provides a stimulating environment designed to inspire student potential.]
+            </p>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                [Additional Introduction Detail Placeholder - Equipped with dedicated faculty, structured academic curriculum, and modern co-curricular activities, the school ensures a balanced educational experience.]
+            </p>
+            <a href="{% url 'website:about' %}" class="btn btn-primary">Learn More About Us &rarr;</a>
+        </div>
+
+        <div class="card" style="border-top: 4px solid var(--secondary);">
+            <div class="card-body">
+                <div style="display: flex; gap: 1.25rem; align-items: flex-start; margin-bottom: 1rem;">
+                    <div style="width: 110px; flex-shrink: 0;">
+                        {% include 'includes/image_placeholder.html' with label="PRINCIPAL PHOTO" ratio="ratio-portrait" hint="Principal Image" %}
+                    </div>
+                    <div>
+                        <span class="badge badge-gold" style="margin-bottom: 0.25rem;">Leadership</span>
+                        <h3 style="margin-bottom: 0.25rem; font-size: 1.25rem;">[Principal's Name]</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Principal, Gurukul Bidhya Sadan</p>
+                    </div>
+                </div>
+                <blockquote style="font-family: var(--font-serif); font-style: italic; color: var(--text-body); background: var(--bg-alt); padding: 1rem; border-left: 3px solid var(--secondary); border-radius: var(--radius-sm); font-size: 0.95rem;">
+                    "[Principal's Message Here - Dear Students, Parents, and Visitors, welcome to Gurukul Bidhya Sadan Secondary School. Education is not merely acquiring information, but developing character, wisdom, and responsibility. We invite you to explore our vibrant academic community.]"
+                </blockquote>
+                <div style="margin-top: 1rem; text-align: right;">
+                    <a href="{% url 'website:about' %}" style="font-weight: 600; font-size: 0.9rem;">Read Full Message &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Highlights Section -->
+<section class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">Institutional Highlights</h2>
+        <p class="section-subtitle">Core pillars that define our educational philosophy and campus experience.</p>
+        
+        <div class="grid-4">
+            <div class="card" style="text-align: center; padding: 1.75rem 1.25rem;">
+                <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">🎓</div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Academic Excellence</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">[Structured curriculum focusing on foundational understanding and critical thinking skills.]</p>
+            </div>
+
+            <div class="card" style="text-align: center; padding: 1.75rem 1.25rem;">
+                <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">🔬</div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Modern Laboratories</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">[Well-equipped Computer and Science labs to enable hands-on practical learning.]</p>
+            </div>
+
+            <div class="card" style="text-align: center; padding: 1.75rem 1.25rem;">
+                <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">🏆</div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Co-Curricular & Sports</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">[Comprehensive programs in sports, cultural arts, debates, and annual exhibitions.]</p>
+            </div>
+
+            <div class="card" style="text-align: center; padding: 1.75rem 1.25rem;">
+                <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">🛡️</div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Holistic Values</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">[Emphasis on discipline, ethics, mutual respect, and community leadership.]</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Notices & Upcoming Events -->
+<section class="section">
+    <div class="container grid-2">
+        <!-- Notices Block -->
+        <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 style="margin: 0; font-size: 1.75rem;">📢 Latest Notices</h2>
+                <a href="{% url 'website:notices' %}" class="btn btn-outline btn-sm">View All &rarr;</a>
+            </div>
+
+            {% if latest_notices %}
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    {% for notice in latest_notices %}
+                        <div class="card" style="padding: 1.25rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <span class="badge badge-primary">{{ notice.get_category_display }}</span>
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">{{ notice.publication_date|date:"N j, Y" }}</span>
+                            </div>
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">
+                                <a href="{% url 'website:notice_detail' notice.id %}">{{ notice.title }}</a>
+                            </h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                                {{ notice.content|truncatewords:20 }}
+                            </p>
+                            <a href="{% url 'website:notice_detail' notice.id %}" style="font-size: 0.85rem; font-weight: 600;">Read Notice &rarr;</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="card" style="padding: 2rem; text-align: center; color: var(--text-muted);">
+                    <p><strong>[No Published Notices Available Yet]</strong></p>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">School administration will publish official notices here through the Django Admin interface.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Upcoming Events Block -->
+        <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 style="margin: 0; font-size: 1.75rem;">📅 Upcoming Events</h2>
+                <a href="{% url 'website:events' %}" class="btn btn-outline btn-sm">View All &rarr;</a>
+            </div>
+
+            {% if upcoming_events %}
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    {% for event in upcoming_events %}
+                        <div class="card" style="padding: 1.25rem; border-left: 4px solid var(--secondary);">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <span class="badge badge-gold">{{ event.get_category_display }}</span>
+                                <span style="font-size: 0.8rem; font-weight: 600; color: var(--primary);">🗓️ {{ event.date|date:"N j, Y" }}</span>
+                            </div>
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">
+                                <a href="{% url 'website:event_detail' event.id %}">{{ event.title }}</a>
+                            </h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                                {{ event.description|truncatewords:20 }}
+                            </p>
+                            <a href="{% url 'website:event_detail' event.id %}" style="font-size: 0.85rem; font-weight: 600;">Event Details &rarr;</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="card" style="padding: 2rem; text-align: center; color: var(--text-muted);">
+                    <p><strong>[No Upcoming Events Scheduled Yet]</strong></p>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">Upcoming sports, annual functions, and cultural events will be listed here dynamically.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Achievements Preview -->
+<section class="section section-alt">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <h2 style="margin: 0;">🏆 Featured Achievements</h2>
+                <p style="color: var(--text-muted); margin: 0;">Celebrating academic, sports, and cultural milestones.</p>
+            </div>
+            <a href="{% url 'website:achievements' %}" class="btn btn-outline">View All Achievements &rarr;</a>
+        </div>
+
+        {% if featured_achievements %}
+            <div class="grid-3">
+                {% for item in featured_achievements %}
+                    <div class="card">
+                        {% include 'includes/image_placeholder.html' with image=item.image label="ACHIEVEMENT PHOTO" ratio="ratio-card" %}
+                        <div class="card-body">
+                            <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">{{ item.get_category_display }} ({{ item.year|default:"Year" }})</span>
+                            <h3 class="card-title">{{ item.title }}</h3>
+                            <p class="card-text">{{ item.description|truncatewords:18 }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="grid-3">
+                <div class="card">
+                    {% include 'includes/image_placeholder.html' with label="ACADEMIC ACHIEVEMENT PHOTO" ratio="ratio-card" %}
+                    <div class="card-body">
+                        <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Academic</span>
+                        <h3 class="card-title">[Academic Excellence Achievement Placeholder]</h3>
+                        <p class="card-text">[Sample description of school academic awards, board examination performance, or scholarship honors.]</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    {% include 'includes/image_placeholder.html' with label="SPORTS CHAMPIONSHIP PHOTO" ratio="ratio-card" %}
+                    <div class="card-body">
+                        <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Sports</span>
+                        <h3 class="card-title">[Inter-School Sports Trophy Placeholder]</h3>
+                        <p class="card-text">[Sample description of athletic milestones, regional tournament wins, or sports day records.]</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    {% include 'includes/image_placeholder.html' with label="CULTURAL PROGRAM PHOTO" ratio="ratio-card" %}
+                    <div class="card-body">
+                        <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Cultural</span>
+                        <h3 class="card-title">[National Science Exhibition Award Placeholder]</h3>
+                        <p class="card-text">[Sample description of student innovations, science exhibition accolades, or drama competition awards.]</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Quick Navigation Bar -->
+<section class="section" style="background-color: var(--primary-dark); color: white;">
+    <div class="container text-center" style="text-align: center;">
+        <h2 style="color: white; margin-bottom: 0.5rem;">Quick Information Access</h2>
+        <p style="color: #cbd5e1; margin-bottom: 2rem;">Navigate directly to key sections of our institutional portal</p>
+
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="{% url 'website:academics' %}" class="btn btn-secondary">Academics & Courses</a>
+            <a href="{% url 'website:notices' %}" class="btn btn-outline" style="color: white; border-color: white;">Official Notices</a>
+            <a href="{% url 'website:events' %}" class="btn btn-outline" style="color: white; border-color: white;">Events & Functions</a>
+            <a href="{% url 'website:gallery' %}" class="btn btn-outline" style="color: white; border-color: white;">Photo Gallery</a>
+            <a href="{% url 'website:alumni' %}" class="btn btn-outline" style="color: white; border-color: white;">Alumni Directory</a>
+            <a href="{% url 'website:contact' %}" class="btn btn-secondary">Contact Desk</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
