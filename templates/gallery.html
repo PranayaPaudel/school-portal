@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Photo Gallery & Albums | Gurukul Bidhya Sadan Secondary School{% endblock %}
+
+{% block content %}
+<!-- Page Banner -->
+<div class="page-banner">
+    <div class="container banner-content">
+        <h1 class="banner-title">Photo Gallery & Campus Life</h1>
+        <ul class="breadcrumb">
+            <li><a href="{% url 'website:home' %}">Home</a></li>
+            <li class="breadcrumb-separator">/</li>
+            <li style="color: white;">Gallery</li>
+        </ul>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <form method="get" action="{% url 'website:gallery' %}" class="filter-form">
+                <div class="form-group">
+                    <label for="category" class="form-label">Filter by Album Category</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">All Categories</option>
+                        {% for cat_key, cat_label in categories %}
+                            <option value="{{ cat_key }}" {% if current_category == cat_key %}selected{% endif %}>{{ cat_label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div style="align-self: flex-end;">
+                    <button type="submit" class="btn btn-primary">Filter Albums</button>
+                    {% if current_category %}
+                        <a href="{% url 'website:gallery' %}" class="btn btn-outline" style="margin-left: 0.5rem;">Show All</a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+
+        {% if albums %}
+            <div class="grid-3">
+                {% for album in albums %}
+                    <div class="card">
+                        {% include 'includes/image_placeholder.html' with image=album.cover_image label=album.title|upper|add:" COVER" ratio="ratio-card" hint="Album Cover Photograph" %}
+
+                        <div class="card-body">
+                            <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">{{ album.get_category_display }}</span>
+                            <h3 class="card-title">
+                                <a href="{% url 'website:gallery_album' album.id %}">{{ album.title }}</a>
+                            </h3>
+
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                                🗓️ Date: {{ album.date|date:"F Y" }} | 🖼️ {{ album.images.count }} Photos
+                            </p>
+
+                            <p class="card-text">
+                                {{ album.description|default:"[Gallery album containing photographs of events and celebrations.]"|truncatewords:20 }}
+                            </p>
+
+                            <a href="{% url 'website:gallery_album' album.id %}" class="btn btn-outline btn-sm" style="margin-top: auto; align-self: flex-start;">
+                                View Album Photos &rarr;
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- Placeholder grid when DB has no albums uploaded -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    {% if current_category %}
+                        No albums match the selected category.
+                    {% else %}
+                        [SAMPLE GALLERY ALBUMS PREVIEW - Demonstrating album layout placeholders. Photos can be uploaded to albums via Django Admin.]
+                    {% endif %}
+                </p>
+            </div>
+
+            {% if not current_category %}
+                <div class="grid-3">
+                    <!-- Album Placeholder 1 -->
+                    <div class="card">
+                        {% include 'includes/image_placeholder.html' with label="SPORTS DAY ALBUM COVER" ratio="ratio-card" hint="Sports Meet Cover Photo" %}
+                        <div class="card-body">
+                            <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Sports Day & Games</span>
+                            <h3 class="card-title">[Annual Sports Day Album]</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">🖼️ 0 Photos Uploaded</p>
+                            <p class="card-text">[Sample album placeholder for photographs from athletic track events, football matches, and award ceremonies.]</p>
+                        </div>
+                    </div>
+
+                    <!-- Album Placeholder 2 -->
+                    <div class="card">
+                        {% include 'includes/image_placeholder.html' with label="CULTURAL PROGRAM ALBUM COVER" ratio="ratio-card" hint="Cultural Fest Cover Photo" %}
+                        <div class="card-body">
+                            <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Cultural Programs</span>
+                            <h3 class="card-title">[Cultural Fest & Music Night]</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">🖼️ 0 Photos Uploaded</p>
+                            <p class="card-text">[Sample album placeholder for student dances, folk performances, musical recitals, and drama plays.]</p>
+                        </div>
+                    </div>
+
+                    <!-- Album Placeholder 3 -->
+                    <div class="card">
+                        {% include 'includes/image_placeholder.html' with label="EDUCATIONAL TOUR COVER" ratio="ratio-card" hint="Excursion Tour Cover Photo" %}
+                        <div class="card-body">
+                            <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 0.5rem;">Educational Tours</span>
+                            <h3 class="card-title">[Science Museum Educational Excursion]</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">🖼️ 0 Photos Uploaded</p>
+                            <p class="card-text">[Sample album placeholder for educational trips, field visits, museum tours, and outdoor study camps.]</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
