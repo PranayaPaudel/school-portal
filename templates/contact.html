@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us | Gurukul Bidhya Sadan Secondary School{% endblock %}
+
+{% block content %}
+<!-- Page Banner -->
+<div class="page-banner">
+    <div class="container banner-content">
+        <h1 class="banner-title">Contact School Administration</h1>
+        <ul class="breadcrumb">
+            <li><a href="{% url 'website:home' %}">Home</a></li>
+            <li class="breadcrumb-separator">/</li>
+            <li style="color: white;">Contact Us</li>
+        </ul>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <!-- Display Django Messages / Form Alerts -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-error{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="contact-grid">
+            <!-- Contact Information & Details Block -->
+            <div>
+                <span class="badge badge-primary" style="margin-bottom: 0.5rem;">Get In Touch</span>
+                <h2>Official Contact Information</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    For admissions, general inquiries, academic verification, or appointments, please reach out to the school administrative desk.
+                </p>
+
+                <!-- Info Item 1 -->
+                <div class="info-box">
+                    <div class="info-icon">📍</div>
+                    <div>
+                        <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">School Address</h4>
+                        <p style="color: var(--text-body); font-size: 0.95rem;">
+                            [School Address Line 1 Placeholder]<br>
+                            [District / City, State, Pin Code Placeholder]
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Info Item 2 -->
+                <div class="info-box">
+                    <div class="info-icon">📞</div>
+                    <div>
+                        <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">Phone & Contact Numbers</h4>
+                        <p style="color: var(--text-body); font-size: 0.95rem;">
+                            Primary Desk: [Official Phone Number]<br>
+                            Admission Hotline: [Official Admission Mobile Number]
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Info Item 3 -->
+                <div class="info-box">
+                    <div class="info-icon">✉️</div>
+                    <div>
+                        <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">Email Address</h4>
+                        <p style="color: var(--text-body); font-size: 0.95rem;">
+                            General Office: [Official Email Address]<br>
+                            Principal Desk: [Principal Official Email Address]
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Info Item 4 -->
+                <div class="info-box">
+                    <div class="info-icon">🕒</div>
+                    <div>
+                        <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">Administrative Office Hours</h4>
+                        <p style="color: var(--text-body); font-size: 0.95rem;">
+                            Monday – Friday: [09:00 AM – 04:00 PM Placeholder]<br>
+                            Saturday: [09:00 AM – 01:00 PM Placeholder]<br>
+                            Sunday & Public Holidays: Closed
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form Block -->
+            <div class="card" style="padding: 2.25rem; border-top: 4px solid var(--primary);">
+                <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--primary-dark);">Send Us a Message</h2>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.75rem;">
+                    Submissions are logged directly into our administrative message database.
+                </p>
+
+                <form method="post" action="{% url 'website:contact' %}">
+                    {% csrf_token %}
+
+                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                        <label for="name" class="form-label">Full Name <span style="color: var(--accent);">*</span></label>
+                        <input type="text" id="name" name="name" required class="form-control" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                        <label for="email" class="form-label">Email Address <span style="color: var(--accent);">*</span></label>
+                        <input type="email" id="email" name="email" required class="form-control" placeholder="Enter your email address">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                        <label for="subject" class="form-label">Subject / Purpose <span style="color: var(--accent);">*</span></label>
+                        <input type="text" id="subject" name="subject" required class="form-control" placeholder="e.g. Admission Inquiry, Document Verification">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="message" class="form-label">Message Details <span style="color: var(--accent);">*</span></label>
+                        <textarea id="message" name="message" rows="5" required class="form-control" placeholder="Type your message here..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        Submit Inquiry Message &rarr;
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Google Maps Location Placeholder -->
+        <div style="margin-top: 3.5rem;">
+            <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">Campus Location Map</h3>
+            <div class="img-placeholder ratio-banner" style="min-height: 280px;">
+                <div class="img-placeholder-icon">🗺️</div>
+                <div class="img-placeholder-text">[ GOOGLE MAPS LOCATION EMBED PLACEHOLDER ]</div>
+                <div class="img-placeholder-hint">Interactive Google Maps iframe to be embedded with official school GPS coordinates</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
