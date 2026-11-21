@@ -61,7 +61,6 @@ class NoticeAdmin(admin.ModelAdmin):
     search_fields = ('title', 'content')
     list_editable = ('is_published', 'is_featured')
     ordering = ('-publication_date',)
-    date_hierarchy = 'publication_date'
     
     fieldsets = (
         ('Notice Information', {
